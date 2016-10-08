@@ -21,7 +21,7 @@ namespace SimpleCalculator.App
                 }
                 catch (InvalidOperationException exception)
                 {
-                    Console.WriteLine($"Error while doing the math.\n {exception.Message}");
+                    Console.WriteLine($"\tError while doing the math.\n\t{exception.Message}");
                 }
 
                 Console.Write("Input: ");
