@@ -13,6 +13,9 @@
 * debian.8-x64
 
 # Publish for runtimes
+```
 dotnet publish -r runtime-goes-here
-e.g. dotnet publish -r win10-x64 -c Release
+#e.g.
+dotnet publish -r win10-x64 -c Release
+```
 Ouptut contained in bin/{configuration}/netcoreapp1.0/{runtime}/publish
