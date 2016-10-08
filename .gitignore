@@ -1,5 +1,10 @@
 TestResults
 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
 *.DS_Store
 .AppleDouble
 .LSOverride
