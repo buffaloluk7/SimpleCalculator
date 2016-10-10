@@ -4,15 +4,13 @@ namespace SimpleCalculator.Core.Entities
 {
     public class TokenDefinition
     {
-        public TokenDefinition(TokenType tokenType, Regex regex, bool ignoreToken = false)
+        public TokenDefinition(string tokenType, Regex regex)
         {
             TokenType = tokenType;
             Regex = regex;
-            IgnoreToken = ignoreToken;
         }
 
-        public TokenType TokenType { get; }
+        public string TokenType { get; }
         public Regex Regex { get; }
-        public bool IgnoreToken { get; }
     }
 }

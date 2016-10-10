@@ -6,7 +6,7 @@ namespace SimpleCalculator.Core.Interfaces
 {
     public interface ITokenStrategy
     {
-        TokenType TokenType { get; }
+        TokenDefinition TokenDefinition { get; }
 
         void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable);
     }

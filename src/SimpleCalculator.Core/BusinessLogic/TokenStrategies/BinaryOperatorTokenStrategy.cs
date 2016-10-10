@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using SimpleCalculator.Core.Entities;
 using SimpleCalculator.Core.Interfaces;
 
@@ -7,7 +8,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
 {
     public class BinaryOperatorTokenStrategy : ITokenStrategy
     {
-        public TokenType TokenType { get; } = TokenType.BinaryOperator;
+        public TokenDefinition TokenDefinition { get; } = new TokenDefinition("binary", new Regex(@"[\+\-\*\/]"));
 
         public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
         {

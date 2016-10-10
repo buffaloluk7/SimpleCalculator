@@ -34,12 +34,9 @@ namespace SimpleCalculator.Core.BusinessLogic
                     throw new InvalidOperationException($"No matching token definition found for {remainingInput}.");
                 }
 
-                var matchingTokenDefintion = _tokenDefinitions.Single(
-                    tokenDefinition => match.Groups[tokenDefinition.TokenType.ToString()].Success);
-                if (!matchingTokenDefintion.IgnoreToken)
-                {
-                    tokens.Add(new Token(match.Value, matchingTokenDefintion));
-                }
+                var matchingTokenDefintion = _tokenDefinitions
+                    .Single(tokenDefinition => match.Groups[tokenDefinition.TokenType.ToString()].Success);
+                tokens.Add(new Token(match.Value, matchingTokenDefintion));
 
                 remainingInput = remainingInput.Substring(match.Length);
             }

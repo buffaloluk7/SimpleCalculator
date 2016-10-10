@@ -23,7 +23,7 @@ namespace SimpleCalculator.Core.BusinessLogic
             foreach (var token in tokens)
             {
                 var tokenType = token.MatchingTokenDefinition.TokenType;
-                var strategy = _tokenStrategies.SingleOrDefault(s => s.TokenType == tokenType);
+                var strategy = _tokenStrategies.SingleOrDefault(s => s.TokenDefinition.TokenType == tokenType);
                 if (strategy == null)
                 {
                     throw new InvalidOperationException($"No strategy found for token type {tokenType}.");

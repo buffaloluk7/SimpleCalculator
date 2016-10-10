@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using SimpleCalculator.Core.Entities;
 using SimpleCalculator.Core.Interfaces;
 
@@ -7,7 +8,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
 {
     public class AssignmentTokenStrategy : ITokenStrategy
     {
-        public TokenType TokenType { get; } = TokenType.Assignment;
+        public TokenDefinition TokenDefinition { get; } = new TokenDefinition("assignment", new Regex(@"="));
 
         public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
         {

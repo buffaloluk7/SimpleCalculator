@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
+using System.Linq;
 using SimpleCalculator.Core;
 using SimpleCalculator.Core.BusinessLogic;
 using SimpleCalculator.Core.BusinessLogic.TokenStrategies;
-using SimpleCalculator.Core.Entities;
 using SimpleCalculator.Core.Interfaces;
 using Xunit;
 
@@ -13,23 +12,21 @@ namespace SimpleCalculator.Tests
     {
         public CalculatorTests()
         {
-            var lexer = new Lexer(new List<TokenDefinition>
+            var tokenStrategies = new List<ITokenStrategy>
             {
-                new TokenDefinition(TokenType.Whitespace, new Regex(@"[ \t\f\r\n]+"), true),
-                new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+")),
-                new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]")),
-                new TokenDefinition(TokenType.UnaryOperator, new Regex(@"~")),
-                new TokenDefinition(TokenType.Variable, new Regex(@"[a-zA-Z][a-zA-Z0-9_]*")),
-                new TokenDefinition(TokenType.Assignment, new Regex(@"="))
-            });
-            var parser = new Parser(new List<ITokenStrategy>
-            {
+                new WhitespaceTokenStrategy(),
                 new NumberTokenStrategy(),
-                new UnaryOperatorTokenStrategy(),
                 new BinaryOperatorTokenStrategy(),
+                new UnaryOperatorTokenStrategy(),
                 new VariableTokenStrategy(),
                 new AssignmentTokenStrategy()
-            });
+            };
+            var tokenDefinitions = tokenStrategies
+                .Select(tokenStrategy => tokenStrategy.TokenDefinition)
+                .ToList();
+
+            var lexer = new Lexer(tokenDefinitions);
+            var parser = new Parser(tokenStrategies);
 
             _sut = new Calculator(lexer, parser);
         }

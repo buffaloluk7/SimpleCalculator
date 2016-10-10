@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using SimpleCalculator.Core.Entities;
 using SimpleCalculator.Core.Interfaces;
 
@@ -7,7 +8,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
 {
     public class UnaryOperatorTokenStrategy : ITokenStrategy
     {
-        public TokenType TokenType { get; } = TokenType.UnaryOperator;
+        public TokenDefinition TokenDefinition { get; } = new TokenDefinition("unary", new Regex(@"~"));
 
         public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
         {

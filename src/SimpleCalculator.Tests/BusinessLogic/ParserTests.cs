@@ -29,7 +29,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static IList<Token> GivenAListOfTokensContainingWhitespace()
         {
-            var whitespaceTokenDefinition = new TokenDefinition(TokenType.Whitespace, new Regex(@"[ \t\f\r\n]+"));
+            var whitespaceTokenDefinition = new WhitespaceTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -39,8 +39,8 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAListOfTokensContainingNumbersAndPlusSignsAndMinusSigns()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
+            var numberTokenDefinition = new NumberTokenStrategy().TokenDefinition;
+            var binaryOperatorTokenDefinition = new BinaryOperatorTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -56,8 +56,8 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAListOfTokensContainingNumbersAndMulitplicationSignsAndDivisionSigns()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
+            var numberTokenDefinition = new NumberTokenStrategy().TokenDefinition;
+            var binaryOperatorTokenDefinition = new BinaryOperatorTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -71,9 +71,9 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAListOfTokensContainingNumbersAndMulitplicationSignsAndNegationSigns()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
-            var unaryOperatorTokenDefinition = new TokenDefinition(TokenType.UnaryOperator, new Regex(@"~"));
+            var numberTokenDefinition = new NumberTokenStrategy().TokenDefinition;
+            var binaryOperatorTokenDefinition = new BinaryOperatorTokenStrategy().TokenDefinition;
+            var unaryOperatorTokenDefinition = new UnaryOperatorTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -90,10 +90,10 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAListOfTokensContainingNumbersAndPlusSignsAndVariablesAndAssignments()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
-            var variableTokenDefinition = new TokenDefinition(TokenType.Variable, new Regex(@"[a-zA-Z][a-zA-Z0-9_]*"));
-            var assignmentTokenDefinition = new TokenDefinition(TokenType.Assignment, new Regex(@"="));
+            var numberTokenDefinition = new NumberTokenStrategy().TokenDefinition;
+            var binaryOperatorTokenDefinition = new BinaryOperatorTokenStrategy().TokenDefinition;
+            var variableTokenDefinition = new VariableTokenStrategy().TokenDefinition;
+            var assignmentTokenDefinition = new AssignmentTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -107,8 +107,8 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAnInvalidTokenListContainingTooLittleBinaryOperators()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
+            var numberTokenDefinition = new NumberTokenStrategy().TokenDefinition;
+            var binaryOperatorTokenDefinition = new BinaryOperatorTokenStrategy().TokenDefinition;
 
             return new List<Token>
             {
@@ -121,8 +121,8 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
         private static List<Token> GivenAnInvalidTokenListContainingTooLittleNumbers()
         {
-            var numberTokenDefinition = new TokenDefinition(TokenType.Number, new Regex(@"[0-9]+"));
-            var binaryOperatorTokenDefinition = new TokenDefinition(TokenType.BinaryOperator, new Regex(@"[\+\-\*\/]"));
+            var numberTokenDefinition = new TokenDefinition("number", new Regex(@"[0-9]+"));
+            var binaryOperatorTokenDefinition = new TokenDefinition("binary", new Regex(@"[\+\-\*\/]"));
 
             return new List<Token>
             {
