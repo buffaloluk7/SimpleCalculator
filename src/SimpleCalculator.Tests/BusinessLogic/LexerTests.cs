@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using SimpleCalculator.Core.BusinessLogic;
 using SimpleCalculator.Core.BusinessLogic.TokenStrategies;
 using SimpleCalculator.Core.Entities;
@@ -55,7 +54,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
 
             // Then
             var actualTokenValues = tokens.Select(token => token.Value).ToArray();
-            var expectedTokenValues = new []
+            var expectedTokenValues = new[]
             {
                 "variable1",
                 " ",
@@ -74,7 +73,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
                 " ",
                 "*",
                 " ",
-                "~",
+                "~"
             };
             Assert.Equal(expectedTokenValues, actualTokenValues);
         }
