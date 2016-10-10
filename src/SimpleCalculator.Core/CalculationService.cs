@@ -31,9 +31,9 @@ namespace SimpleCalculator.Core
             _calculator = new Calculator(lexer, parser);
         }
 
-        public int Calculate(string input)
+        public T Calculate<T>(string input)
         {
-            return _calculator.Calculate(input);
+            return _calculator.Calculate<T>(input);
         }
     }
 }

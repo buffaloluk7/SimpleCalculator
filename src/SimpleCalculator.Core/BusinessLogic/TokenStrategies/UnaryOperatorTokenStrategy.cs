@@ -10,20 +10,22 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
     {
         public TokenDefinition TokenDefinition { get; } = new TokenDefinition("unary", new Regex(@"~"));
 
-        public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
+        public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {
-            var argument = stack.Pop();
-            var result = ApplyUnaryOperation(argument, token.Value);
+            var operand = stack.Pop();
+            var result = ApplyUnaryOperation(operand, token.Value);
 
             stack.Push(result);
         }
 
-        private static int ApplyUnaryOperation(int argument, string @operator)
+        private static T ApplyUnaryOperation<T>(T operand, string @operator)
         {
+            dynamic dynamicOperand = operand;
+
             switch (@operator)
             {
                 case "~":
-                    return -argument;
+                    return -dynamicOperand;
                 default:
                     throw new InvalidOperationException($"Invalid operator {@operator}.");
             }

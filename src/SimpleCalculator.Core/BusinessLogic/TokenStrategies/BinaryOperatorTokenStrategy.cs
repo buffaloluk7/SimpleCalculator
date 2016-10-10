@@ -10,28 +10,30 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
     {
         public TokenDefinition TokenDefinition { get; } = new TokenDefinition("binary", new Regex(@"[\+\-\*\/]"));
 
-        public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
+        public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {
-            // Swap first and second argument (important for - and / operations)
-            var secondArgument = stack.Pop();
-            var firstArgument = stack.Pop();
-            var result = ApplyBinaryOperation(firstArgument, secondArgument, token.Value);
+            // Swap first and second operand (important for - and / operations)
+            var rightOperand = stack.Pop();
+            var leftOperand = stack.Pop();
+            var result = ApplyBinaryOperation(leftOperand, rightOperand, token.Value);
 
             stack.Push(result);
         }
 
-        private static int ApplyBinaryOperation(int firstArgument, int secondArgument, string @operator)
+        private static T ApplyBinaryOperation<T>(T leftOperand, T rightOperand, string @operator)
         {
+            dynamic leftDynamicOperand = leftOperand;
+
             switch (@operator)
             {
                 case "+":
-                    return firstArgument + secondArgument;
+                    return leftDynamicOperand + rightOperand;
                 case "-":
-                    return firstArgument - secondArgument;
+                    return leftDynamicOperand - rightOperand;
                 case "*":
-                    return firstArgument*secondArgument;
+                    return leftDynamicOperand*rightOperand;
                 case "/":
-                    return firstArgument/secondArgument;
+                    return leftDynamicOperand/rightOperand;
                 default:
                     throw new InvalidOperationException($"Invalid operator {@operator}.");
             }

@@ -16,7 +16,7 @@ namespace SimpleCalculator.App
             {
                 try
                 {
-                    var result = calculationService.Calculate(input);
+                    var result = calculationService.Calculate<double>(input);
                     Console.WriteLine($"Result: {result}");
                 }
                 catch (InvalidOperationException exception)

@@ -140,7 +140,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAListOfTokensContainingNumbersAndPlusSignsAndMinusSigns();
 
             // When
-            var result = _sut.ParseTokens(tokens);
+            var result = _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Equal(7, result);
@@ -153,7 +153,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAListOfTokensContainingNumbersAndMulitplicationSignsAndNegationSigns();
 
             // When
-            var result = _sut.ParseTokens(tokens);
+            var result = _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Equal(-3, result);
@@ -166,7 +166,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAListOfTokensContainingNumbersAndPlusSignsAndVariablesAndAssignments();
 
             // When
-            var result = _sut.ParseTokens(tokens);
+            var result = _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Equal(6, result);
@@ -179,7 +179,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAListOfTokensContainingNumbersAndMulitplicationSignsAndDivisionSigns();
 
             // When
-            var result = _sut.ParseTokens(tokens);
+            var result = _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Equal(3, result);
@@ -192,7 +192,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAListOfTokensContainingWhitespace();
 
             // When
-            Action action = () => _sut.ParseTokens(tokens);
+            Action action = () => _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Throws<InvalidOperationException>(action);
@@ -205,7 +205,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAnInvalidTokenListContainingTooLittleBinaryOperators();
 
             // When
-            Action action = () => _sut.ParseTokens(tokens);
+            Action action = () => _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Throws<InvalidOperationException>(action);
@@ -218,7 +218,7 @@ namespace SimpleCalculator.Tests.BusinessLogic
             var tokens = GivenAnInvalidTokenListContainingTooLittleNumbers();
 
             // When
-            Action action = () => _sut.ParseTokens(tokens);
+            Action action = () => _sut.ParseTokens<int>(tokens);
 
             // Then
             Assert.Throws<InvalidOperationException>(action);

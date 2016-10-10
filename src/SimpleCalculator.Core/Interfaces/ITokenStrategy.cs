@@ -8,6 +8,6 @@ namespace SimpleCalculator.Core.Interfaces
     {
         TokenDefinition TokenDefinition { get; }
 
-        void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable);
+        void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable);
     }
 }

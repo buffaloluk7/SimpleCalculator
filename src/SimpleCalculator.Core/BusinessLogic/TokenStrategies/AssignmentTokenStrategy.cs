@@ -10,7 +10,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
     {
         public TokenDefinition TokenDefinition { get; } = new TokenDefinition("assignment", new Regex(@"="));
 
-        public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
+        public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {
             if (stack.Count == 0)
             {
@@ -24,7 +24,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
             var value = stack.Peek();
             var variable = symbolTable.Pop();
 
-            symbolTable.Push(new Tuple<string, int>(variable.Item1, value));
+            symbolTable.Push(new Tuple<string, T>(variable.Item1, value));
         }
     }
 }

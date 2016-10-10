@@ -13,10 +13,10 @@ namespace SimpleCalculator.Core
             _parser = parser;
         }
 
-        public int Calculate(string input)
+        public T Calculate<T>(string input)
         {
             var tokens = _lexer.Tokenize(input);
-            var result = _parser.ParseTokens(tokens);
+            var result = _parser.ParseTokens<T>(tokens);
 
             return result;
         }

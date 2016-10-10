@@ -15,10 +15,10 @@ namespace SimpleCalculator.Core.BusinessLogic
             _tokenStrategies = tokenStrategies;
         }
 
-        public int ParseTokens(IList<Token> tokens)
+        public T ParseTokens<T>(IList<Token> tokens)
         {
-            var stack = new Stack<int>();
-            var symbolTable = new Stack<Tuple<string, int>>();
+            var stack = new Stack<T>();
+            var symbolTable = new Stack<Tuple<string, T>>();
 
             foreach (var token in tokens)
             {

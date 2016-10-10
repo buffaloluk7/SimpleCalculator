@@ -12,12 +12,12 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
         public TokenDefinition TokenDefinition { get; } = new TokenDefinition("variable",
             new Regex(@"[a-zA-Z][a-zA-Z0-9_]*"));
 
-        public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
+        public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {
             var variable = symbolTable.SingleOrDefault(v => v.Item1 == token.Value);
             if (variable == null)
             {
-                symbolTable.Push(new Tuple<string, int>(token.Value, 0));
+                symbolTable.Push(new Tuple<string, T>(token.Value, default(T)));
             }
             else
             {

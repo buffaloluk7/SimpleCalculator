@@ -10,7 +10,7 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
     {
         public TokenDefinition TokenDefinition { get; } = new TokenDefinition("whitespace", new Regex(@"[ \t\f\r\n]+"));
 
-        public void HandleToken(Token token, Stack<int> stack, Stack<Tuple<string, int>> symbolTable)
+        public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {
         }
     }
