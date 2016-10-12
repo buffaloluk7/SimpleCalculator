@@ -20,20 +20,18 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
             stack.Push(result);
         }
 
-        private static T ApplyBinaryOperation<T>(T leftOperand, T rightOperand, string @operator)
+        private static T ApplyBinaryOperation<T>(T leftOperand, dynamic rightOperand, string @operator)
         {
-            dynamic leftDynamicOperand = leftOperand;
-
             switch (@operator)
             {
                 case "+":
-                    return leftDynamicOperand + rightOperand;
+                    return leftOperand + rightOperand;
                 case "-":
-                    return leftDynamicOperand - rightOperand;
+                    return leftOperand - rightOperand;
                 case "*":
-                    return leftDynamicOperand*rightOperand;
+                    return leftOperand*rightOperand;
                 case "/":
-                    return leftDynamicOperand/rightOperand;
+                    return leftOperand/rightOperand;
                 default:
                     throw new InvalidOperationException($"Invalid operator {@operator}.");
             }
