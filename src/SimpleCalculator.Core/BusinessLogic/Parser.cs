@@ -6,19 +6,20 @@ using SimpleCalculator.Core.Interfaces;
 
 namespace SimpleCalculator.Core.BusinessLogic
 {
-    public class Parser
+    public class Parser<T>
     {
         private readonly IList<ITokenStrategy> _tokenStrategies;
+        private readonly Stack<Tuple<string, T>> _symbolTable;
 
         public Parser(IList<ITokenStrategy> tokenStrategies)
         {
             _tokenStrategies = tokenStrategies;
+            _symbolTable = new Stack<Tuple<string, T>>();
         }
 
-        public T ParseTokens<T>(IList<Token> tokens)
+        public T ParseTokens(IList<Token> tokens)
         {
             var stack = new Stack<T>();
-            var symbolTable = new Stack<Tuple<string, T>>();
 
             foreach (var token in tokens)
             {
@@ -29,7 +30,7 @@ namespace SimpleCalculator.Core.BusinessLogic
                     throw new InvalidOperationException($"No strategy found for token type {tokenType}.");
                 }
 
-                strategy.HandleToken(token, stack, symbolTable);
+                strategy.HandleToken(token, stack, _symbolTable);
             }
 
             if (stack.Count != 1)

@@ -7,7 +7,7 @@ namespace SimpleCalculator.App
     {
         public static void Main(string[] args)
         {
-            var calculationService = new CalculationService();
+            var calculationService = new CalculationService<double>();
 
             Console.Write("Input: ");
 
@@ -16,7 +16,7 @@ namespace SimpleCalculator.App
             {
                 try
                 {
-                    var result = calculationService.Calculate<double>(input);
+                    var result = calculationService.Calculate(input);
                     Console.WriteLine($"Result: {result}");
                 }
                 catch (InvalidOperationException exception)

@@ -6,9 +6,9 @@ using SimpleCalculator.Core.Interfaces;
 
 namespace SimpleCalculator.Core
 {
-    public class CalculationService
+    public class CalculationService<T>
     {
-        private readonly Calculator _calculator;
+        private readonly Calculator<T> _calculator;
 
         public CalculationService()
         {
@@ -26,14 +26,14 @@ namespace SimpleCalculator.Core
                 .ToList();
 
             var lexer = new Lexer(tokenDefinitions);
-            var parser = new Parser(tokenStrategies);
+            var parser = new Parser<T>(tokenStrategies);
 
-            _calculator = new Calculator(lexer, parser);
+            _calculator = new Calculator<T>(lexer, parser);
         }
 
-        public T Calculate<T>(string input)
+        public T Calculate(string input)
         {
-            return _calculator.Calculate<T>(input);
+            return _calculator.Calculate(input);
         }
     }
 }

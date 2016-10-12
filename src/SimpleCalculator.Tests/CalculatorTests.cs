@@ -26,12 +26,12 @@ namespace SimpleCalculator.Tests
                 .ToList();
 
             var lexer = new Lexer(tokenDefinitions);
-            var parser = new Parser(tokenStrategies);
+            var parser = new Parser<double>(tokenStrategies);
 
-            _sut = new Calculator(lexer, parser);
+            _sut = new Calculator<double>(lexer, parser);
         }
 
-        private readonly Calculator _sut;
+        private readonly Calculator<double> _sut;
 
         [Fact]
         public void ItShallAddAndSubtractAndMultiplyAndDivideMultipleNumbers()
@@ -40,7 +40,7 @@ namespace SimpleCalculator.Tests
             const string input = "7 15 + 2 * 11 /";
 
             // When
-            var result = _sut.Calculate<int>(input);
+            var result = _sut.Calculate(input);
 
             // Then
             Assert.Equal(4, result);
@@ -53,7 +53,7 @@ namespace SimpleCalculator.Tests
             const string input = "7 6 3 2 1+--+";
 
             // When
-            var result = _sut.Calculate<int>(input);
+            var result = _sut.Calculate(input);
 
             // Then
             Assert.Equal(13, result);
@@ -66,7 +66,7 @@ namespace SimpleCalculator.Tests
             const string input = "8.4 7.2 - .68 + 4 /";
 
             // When
-            var result = _sut.Calculate<double>(input);
+            var result = _sut.Calculate(input);
 
             // Then
             Assert.Equal(0.47, result, 15);

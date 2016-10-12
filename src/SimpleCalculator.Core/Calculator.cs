@@ -2,21 +2,21 @@
 
 namespace SimpleCalculator.Core
 {
-    public class Calculator
+    public class Calculator<T>
     {
         private readonly Lexer _lexer;
-        private readonly Parser _parser;
+        private readonly Parser<T> _parser;
 
-        public Calculator(Lexer lexer, Parser parser)
+        public Calculator(Lexer lexer, Parser<T> parser)
         {
             _lexer = lexer;
             _parser = parser;
         }
 
-        public T Calculate<T>(string input)
+        public T Calculate(string input)
         {
             var tokens = _lexer.Tokenize(input);
-            var result = _parser.ParseTokens<T>(tokens);
+            var result = _parser.ParseTokens(tokens);
 
             return result;
         }
