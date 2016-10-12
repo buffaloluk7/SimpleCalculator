@@ -9,7 +9,8 @@ namespace SimpleCalculator.Core.BusinessLogic.TokenStrategies
 {
     public class NumberTokenStrategy : ITokenStrategy
     {
-        public TokenDefinition TokenDefinition { get; } = new TokenDefinition("number", new Regex(@"([0-9]*[.])?[0-9]+"));
+        public TokenDefinition TokenDefinition { get; } = new TokenDefinition("number", new Regex(@"([0-9]*[.])?[0-9]+"))
+            ;
 
         public void HandleToken<T>(Token token, Stack<T> stack, Stack<Tuple<string, T>> symbolTable)
         {

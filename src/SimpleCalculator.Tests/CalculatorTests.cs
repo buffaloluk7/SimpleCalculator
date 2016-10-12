@@ -47,19 +47,6 @@ namespace SimpleCalculator.Tests
         }
 
         [Fact]
-        public void ItShallAddAndSubtractMultipleNumbers()
-        {
-            // Given
-            const string input = "7 6 3 2 1+--+";
-
-            // When
-            var result = _sut.Calculate(input);
-
-            // Then
-            Assert.Equal(13, result);
-        }
-
-        [Fact]
         public void ItShallAddAndSubtractMultipleFloatNumbers()
         {
             // Given
@@ -70,6 +57,19 @@ namespace SimpleCalculator.Tests
 
             // Then
             Assert.Equal(0.47, result, 15);
+        }
+
+        [Fact]
+        public void ItShallAddAndSubtractMultipleNumbers()
+        {
+            // Given
+            const string input = "7 6 3 2 1+--+";
+
+            // When
+            var result = _sut.Calculate(input);
+
+            // Then
+            Assert.Equal(13, result);
         }
     }
 }

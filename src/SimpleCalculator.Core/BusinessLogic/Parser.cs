@@ -8,8 +8,8 @@ namespace SimpleCalculator.Core.BusinessLogic
 {
     public class Parser<T>
     {
-        private readonly IList<ITokenStrategy> _tokenStrategies;
         private readonly Stack<Tuple<string, T>> _symbolTable;
+        private readonly IList<ITokenStrategy> _tokenStrategies;
 
         public Parser(IList<ITokenStrategy> tokenStrategies)
         {
